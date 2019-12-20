@@ -1,0 +1,31 @@
+{
+    "name": "maxgaurav/laravel-sqs-sns",
+    "description": "Sns Messages as queues",
+    "type": "library",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Max Gaurav",
+            "email": "max.gaurav@ithands.net"
+        }
+    ],
+    "require": {
+        "illuminate/queue": "6.*",
+        "aws/aws-sdk-php": "^3.62",
+        "ext-json": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MaxGaurav\\LaravelSnsSqsQueue\\SnsSqsServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MaxGaurav\\LaravelSnsSqsQueue\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
