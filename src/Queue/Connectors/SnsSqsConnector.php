@@ -23,8 +23,7 @@ class SnsSqsConnector extends SqsConnector implements ConnectorInterface
             new SqsClient($config),
             $config['queue'],
             Arr::get($config, 'prefix', ''),
-            Arr::get($config, 'topics', []),
-            Arr::get($config, 'sns-prefix', [])
+            Arr::get($config, 'sns-config', ['topics' => [], 'prefix' => ''])
         );
     }
 }

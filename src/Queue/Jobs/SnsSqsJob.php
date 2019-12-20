@@ -11,7 +11,7 @@ use MaxGaurav\LaravelSnsSqsQueue\DefaultJob;
 
 class SnsSqsJob extends SqsJob
 {
-    protected $prefix;
+    protected $snsConfig;
 
     /**
      * SnsSqsJob constructor.
@@ -29,12 +29,11 @@ class SnsSqsJob extends SqsJob
         array $job,
         $connectionName,
         $queue,
-        array $topics,
-        string $prefix
+        array $snsConfig
     ) {
         parent::__construct($container, $sqs, $job, $connectionName, $queue);
-        $this->prefix = $prefix;
-        $this->job = $this->resolveSnsTopicJob($job, $topics);
+        $this->snsConfig = $snsConfig;
+        $this->job = $this->resolveSnsTopicJob($job, $snsConfig['topics']);
     }
 
     /**
@@ -124,6 +123,10 @@ class SnsSqsJob extends SqsJob
      */
     protected function defaultJob(): string
     {
+        if (array_key_exists('default-job', $this->snsConfig) && !empty($this->snsConfig['default-job'])) {
+            return $this->snsConfig['default-job'];
+        }
+
         return DefaultJob::class;
     }
 
@@ -135,6 +138,6 @@ class SnsSqsJob extends SqsJob
      */
     private function plainTopicName(string $topic): string
     {
-        return Str::replaceFirst($this->prefix . ':', '', $topic);
+        return Str::replaceFirst($this->snsConfig['prefix'] . ':', '', $topic);
     }
 }

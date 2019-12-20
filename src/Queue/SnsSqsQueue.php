@@ -16,9 +16,9 @@ class SnsSqsQueue extends SqsQueue
     protected $topics;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $snsPrefix;
+    protected $snsConfig;
 
     /**
      * Create new Amazon SNS SQS subscription queue instance
@@ -28,11 +28,10 @@ class SnsSqsQueue extends SqsQueue
      * @param string $prefix
      * @param array $topics
      */
-    public function __construct(SqsClient $sqs, $default, $prefix = '', $topics = [],  $snsPrefix = '')
+    public function __construct(SqsClient $sqs, $default, $prefix = '', array $snsConfig = ['topics' => [], 'prefix' => ''])
     {
         parent::__construct($sqs, $default, $prefix);
-        $this->topics = $topics;
-        $this->snsPrefix = $snsPrefix;
+        $this->snsConfig = $snsConfig;
     }
 
     /**
@@ -55,8 +54,7 @@ class SnsSqsQueue extends SqsQueue
                 $response['Messages'][0],
                 $this->connectionName,
                 $queue,
-                $this->topics,
-                $this->snsPrefix
+                $this->snsConfig
             );
 
         }
