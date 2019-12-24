@@ -3,6 +3,8 @@
 This package allows you to process sns messages posted on various topics subscribed by an SQS to be processed as 
 a job.
 
+The queue also processes standard jobs pushed via laravel.
+
 This package is a great use cases for applications beings deployed to microservices.
 
 ## Requirements
@@ -115,3 +117,8 @@ to tell that topics are not mapped.
 
 The DefaultJob class can be replaced with a custom default job handler using key **default-job**. Pass your class instance and it would be used instead. 
 
+
+## Normal Jobs
+The package can also be used to push normal jobs to SQS queue as done using sqs driver. The queue would check if the
+job is a sns job then would map to topic name and would call the mapped jobs otherwise would fallback to default SQS
+driver behavior.
