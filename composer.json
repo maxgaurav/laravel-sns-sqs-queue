@@ -21,7 +21,7 @@
     ],
     "require": {
         "php" : "^7.2",
-        "illuminate/queue": "6.*",
+        "illuminate/queue": "6.* || 7.*",
         "aws/aws-sdk-php": "^3.62",
         "ext-json": "*"
     },
