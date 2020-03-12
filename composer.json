@@ -2,7 +2,6 @@
     "name": "maxgaurav/laravel-sns-sqs-queue",
     "description": "Sns Messages as queues using extended laravel sqs driver.",
     "type": "library",
-    "version": "1.0.1",
     "license": "MIT",
     "homepage": "https://github.com/maxgaurav/laravel-sqs-sns",
     "authors": [
