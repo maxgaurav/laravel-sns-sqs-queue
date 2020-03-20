@@ -138,6 +138,6 @@ class SnsSqsJob extends SqsJob
      */
     protected function plainTopicName(string $topic): string
     {
-        return Str::replaceFirst($this->snsConfig['prefix'] . ':', '', $topic);
+        return Str::replaceFirst($this->snsConfig['prefix'], '', $topic);
     }
 }
