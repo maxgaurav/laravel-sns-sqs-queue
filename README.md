@@ -54,7 +54,7 @@ return [
                 //...
             ],
             'default-job' => '', // if you want to override the default job executed for non matching topics
-            'prefix' => env('SNS_PREFIX', ''), // SNS Topic Prefix
+            'prefix' => env('SNS_PREFIX', 'arn:aws:sns:us-east-2:123345666:'), // SNS Topic Prefix (must include the last colon)
         ],
     ],
 
